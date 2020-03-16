@@ -5,9 +5,6 @@ import time
 from Adafruit_MotorHAT import Adafruit_MotorHAT
 from std_msgs.msg import String
 
-
-
-
 # sets motor speed between [-1.0, 1.0]
 def set_speed(motor_ID, value):
 	max_pwm = 115.0
@@ -53,15 +50,23 @@ def on_cmd_str(msg):
 	if msg.data.lower() == "left":
 		set_speed(motor_left_ID,  -1.0)
 		set_speed(motor_right_ID,  1.0) 
+		set_speed(motor_left_ID_2,  -1.0)
+		set_speed(motor_right_ID_2,  1.0) 
 	elif msg.data.lower() == "right":
 		set_speed(motor_left_ID,   1.0)
 		set_speed(motor_right_ID, -1.0) 
+		set_speed(motor_left_ID_2,   1.0)
+		set_speed(motor_right_ID_2, -1.0) 
 	elif msg.data.lower() == "forward":
 		set_speed(motor_left_ID,   1.0)
 		set_speed(motor_right_ID,  1.0)
+		set_speed(motor_left_ID_2,   1.0)
+		set_speed(motor_right_ID_2,  1.0)		
 	elif msg.data.lower() == "backward":
 		set_speed(motor_left_ID,  -1.0)
 		set_speed(motor_right_ID, -1.0)  
+		set_speed(motor_left_ID_2,  -1.0)
+		set_speed(motor_right_ID_2, -1.0)  
 	elif msg.data.lower() == "stop":
 		all_stop()
 	else:
@@ -76,10 +81,13 @@ if __name__ == '__main__':
 
 	motor_left_ID = 1
 	motor_right_ID = 2
-
+	motor_left_ID_2 = 3
+	motor_right_ID_2 = 4
+	
 	motor_left = motor_driver.getMotor(motor_left_ID)
 	motor_right = motor_driver.getMotor(motor_right_ID)
-
+	motor_left_2 = motor_driver.getMotor(motor_left_ID_2)
+	motor_right_2 = motor_driver.getMotor(motor_right_ID_2)
 	# stop the motors as precaution
 	all_stop()
 
