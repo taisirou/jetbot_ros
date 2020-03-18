@@ -65,16 +65,16 @@ def on_cmd_str(msg):
 		set_speed(motor_right_ID, -1.0) 
 		set_speed(motor_left2_ID,   1.0)
 		set_speed(motor_right2_ID, -1.0) 
-	elif msg.data.lower() == "forward":
+	elif msg.data.lower() == "backward":
 		set_speed(motor_left_ID,   1.0)
 		set_speed(motor_right_ID,  1.0)
-		set_speed(motor_left2_ID,   1.0)
-		set_speed(motor_right2_ID,  1.0)		
-	elif msg.data.lower() == "backward":
+		set_speed(motor_left2_ID,   -1.0)
+		set_speed(motor_right2_ID,  -1.0)		
+	elif msg.data.lower() == "forward":
 		set_speed(motor_left_ID,  -1.0)
 		set_speed(motor_right_ID, -1.0)  
-		set_speed(motor_left2_ID,  -1.0)
-		set_speed(motor_right2_ID, -1.0)  
+		set_speed(motor_left2_ID,  1.0)
+		set_speed(motor_right2_ID, 1.0) 
 	elif msg.data.lower() == "stop":
 		all_stop()
 	else:
