@@ -14,6 +14,11 @@ def set_speed(motor_ID, value):
 		motor = motor_left
 	elif motor_ID == 2:
 		motor = motor_right
+	elif motor_ID == 3:
+		motor = motor_left2
+	elif motor_ID == 4:
+		motor = motor_right2		
+		
 	else:
 		rospy.logerror('set_speed(%d, %f) -> invalid motor_ID=%d', motor_ID, value, motor_ID)
 		return
@@ -30,10 +35,13 @@ def set_speed(motor_ID, value):
 def all_stop():
 	motor_left.setSpeed(0)
 	motor_right.setSpeed(0)
-
+	motor_left2.setSpeed(0)
+	motor_right2.setSpeed(0)
+	
 	motor_left.run(Adafruit_MotorHAT.RELEASE)
 	motor_right.run(Adafruit_MotorHAT.RELEASE)
-
+	motor_left2.run(Adafruit_MotorHAT.RELEASE)
+	motor_right2.run(Adafruit_MotorHAT.RELEASE)
 
 # directional commands (degree, speed)
 def on_cmd_dir(msg):
@@ -50,23 +58,23 @@ def on_cmd_str(msg):
 	if msg.data.lower() == "left":
 		set_speed(motor_left_ID,  -1.0)
 		set_speed(motor_right_ID,  1.0) 
-		set_speed(motor_left_ID_2,  -1.0)
-		set_speed(motor_right_ID_2,  1.0) 
+		set_speed(motor_left2_ID,  -1.0)
+		set_speed(motor_right2_ID,  1.0) 
 	elif msg.data.lower() == "right":
 		set_speed(motor_left_ID,   1.0)
 		set_speed(motor_right_ID, -1.0) 
-		set_speed(motor_left_ID_2,   1.0)
-		set_speed(motor_right_ID_2, -1.0) 
+		set_speed(motor_left2_ID,   1.0)
+		set_speed(motor_right2_ID, -1.0) 
 	elif msg.data.lower() == "forward":
 		set_speed(motor_left_ID,   1.0)
 		set_speed(motor_right_ID,  1.0)
-		set_speed(motor_left_ID_2,   1.0)
-		set_speed(motor_right_ID_2,  1.0)		
+		set_speed(motor_left2_ID,   1.0)
+		set_speed(motor_right2_ID,  1.0)		
 	elif msg.data.lower() == "backward":
 		set_speed(motor_left_ID,  -1.0)
 		set_speed(motor_right_ID, -1.0)  
-		set_speed(motor_left_ID_2,  -1.0)
-		set_speed(motor_right_ID_2, -1.0)  
+		set_speed(motor_left2_ID,  -1.0)
+		set_speed(motor_right2_ID, -1.0)  
 	elif msg.data.lower() == "stop":
 		all_stop()
 	else:
@@ -81,13 +89,13 @@ if __name__ == '__main__':
 
 	motor_left_ID = 1
 	motor_right_ID = 2
-	motor_left_ID_2 = 3
-	motor_right_ID_2 = 4
+	motor_left2_ID = 3
+	motor_right2_ID = 4
 	
 	motor_left = motor_driver.getMotor(motor_left_ID)
 	motor_right = motor_driver.getMotor(motor_right_ID)
-	motor_left_2 = motor_driver.getMotor(motor_left_ID_2)
-	motor_right_2 = motor_driver.getMotor(motor_right_ID_2)
+	motor_left2_ID = motor_driver.getMotor(motor_left2_ID)
+	motor_right2_ID = motor_driver.getMotor(motor_right2_ID)
 	# stop the motors as precaution
 	all_stop()
 
