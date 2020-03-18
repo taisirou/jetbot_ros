@@ -94,8 +94,8 @@ if __name__ == '__main__':
 	
 	motor_left = motor_driver.getMotor(motor_left_ID)
 	motor_right = motor_driver.getMotor(motor_right_ID)
-	motor_left2_ID = motor_driver.getMotor(motor_left2_ID)
-	motor_right2_ID = motor_driver.getMotor(motor_right2_ID)
+	motor_left2 = motor_driver.getMotor(motor_left2_ID)
+	motor_right2 = motor_driver.getMotor(motor_right2_ID)
 	# stop the motors as precaution
 	all_stop()
 
