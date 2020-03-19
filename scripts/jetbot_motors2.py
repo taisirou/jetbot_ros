@@ -14,9 +14,9 @@ def set_speed(motor_ID, value):
 		motor = motor_left
 	elif motor_ID == 2:
 		motor = motor_right
-	elif motor_ID == 3:
-		motor = motor_left2
 	elif motor_ID == 4:
+		motor = motor_left2
+	elif motor_ID == 3:
 		motor = motor_right2		
 		
 	else:
@@ -58,13 +58,13 @@ def on_cmd_str(msg):
 	if msg.data.lower() == "left":
 		set_speed(motor_left_ID,  -1.0)
 		set_speed(motor_right_ID,  1.0) 
-		set_speed(motor_left2_ID,  -1.0)
-		set_speed(motor_right2_ID,  1.0) 
+		set_speed(motor_left2_ID,  1.0)
+		set_speed(motor_right2_ID,  -1.0) 
 	elif msg.data.lower() == "right":
 		set_speed(motor_left_ID,   1.0)
 		set_speed(motor_right_ID, -1.0) 
-		set_speed(motor_left2_ID,   1.0)
-		set_speed(motor_right2_ID, -1.0) 
+		set_speed(motor_left2_ID,   -1.0)
+		set_speed(motor_right2_ID, 1.0) 
 	elif msg.data.lower() == "backward":
 		set_speed(motor_left_ID,   1.0)
 		set_speed(motor_right_ID,  1.0)
@@ -89,8 +89,8 @@ if __name__ == '__main__':
 
 	motor_left_ID = 1
 	motor_right_ID = 2
-	motor_left2_ID = 3
-	motor_right2_ID = 4
+	motor_left2_ID = 4
+	motor_right2_ID = 3
 	
 	motor_left = motor_driver.getMotor(motor_left_ID)
 	motor_right = motor_driver.getMotor(motor_right_ID)
